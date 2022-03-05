@@ -15,7 +15,7 @@ fb.post("/notes", (req, res) => {
         const newNote = {
             title,
             text,
-            feedback_id: uuidv4(),
+            id: uuidv4(),
         };
 
         readAndAppend(newNote, "./db/db.json");
@@ -33,6 +33,7 @@ fb.post("/notes", (req, res) => {
 // EXTRA CREDIT delete the notes
 fb.delete("/notes/:id", (req, res) => {
     const noteId = req.params.id;
+    console.log(noteId);
     readFromFile("./db/db.json")
         .then((data) => JSON.parse(data))
         .then((json) => {
